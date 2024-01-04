@@ -1,14 +1,11 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { formatCurrency } from "../../utils/helpers";
+import { getTotalPrice, getTotalQuantity } from "./cartSlice";
 
 function CartOverview() {
-  const totalQuantity = useSelector((store) =>
-    store.cart.cart.reduce((sum, item) => (sum += item.quantity), 0),
-  );
-  const totalPrice = useSelector((store) =>
-    store.cart.cart.reduce((sum, item) => (sum += item.totalPrice), 0),
-  );
+  const totalQuantity = useSelector(getTotalQuantity);
+  const totalPrice = useSelector(getTotalPrice);
 
   if (!totalQuantity) return null;
 

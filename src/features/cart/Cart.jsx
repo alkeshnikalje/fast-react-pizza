@@ -1,13 +1,14 @@
 import LinkButton from "../../ui/LinkButton";
 import Button from "../../ui/Button";
 import CartItem from "./CartItem";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import store from "../../store";
 import EmptyCart from "./EmptyCart";
+import { clearCart } from "./cartSlice";
 function Cart() {
   const userName = useSelector((store) => store.user.userName);
   const cart = useSelector((store) => store.cart.cart);
-
+  const dispatch = useDispatch();
   if (!cart.length) return <EmptyCart />;
 
   return (
@@ -27,7 +28,9 @@ function Cart() {
           Order pizzas
         </Button>
 
-        <Button type="secondary">Clear cart</Button>
+        <Button type="secondary" onclick={() => dispatch(clearCart())}>
+          Clear cart
+        </Button>
       </div>
     </div>
   );
