@@ -13,6 +13,7 @@ import { createOrder } from "../../services/apiRestaurant";
 import { useSelector } from "react-redux";
 import { clearCart, getTotalPrice } from "../cart/cartSlice";
 import { formatCurrency } from "../../utils/helpers";
+import { updateAddress } from "../user/userSlice";
 // https://uibakery.io/regex-library/phone-number
 const isValidPhone = (str) =>
   /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/.test(
@@ -21,7 +22,7 @@ const isValidPhone = (str) =>
 
 function CreateOrder() {
   const [withPriority, setWithPriority] = useState(false);
-  const userName = useSelector((store) => store.user.userName);
+  const { userName, address } = useSelector((store) => store.user);
   const cart = useSelector((store) => store.cart.cart);
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
@@ -69,6 +70,7 @@ function CreateOrder() {
               type="text"
               name="address"
               required
+              defaultValue={address}
             />
           </div>
         </div>
@@ -109,6 +111,7 @@ export async function action({ request }) {
     priority: data.priority === "true",
   };
 
+  store.dispatch(updateAddress(order.address));
   const errors = {};
   if (!isValidPhone(order.phone)) {
     errors.phone = "please enter valid phone number";
