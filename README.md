@@ -1,6 +1,6 @@
 # Fast React Pizza
 
-Fast React Pizza is a web application built using React.js, React-router-dom for routing and data loading, and Redux Toolkit for state management. It allows users to browse a selection of pizzas, add them to their cart, and create orders.
+Fast React Pizza is a web application built using React.js, React-router-dom for routing and data loading, tailwind css for styling, and Redux Toolkit for state management. It allows users to browse a selection of pizzas, add them to their cart, and create orders.
 
 ## Features
 
@@ -14,6 +14,7 @@ Fast React Pizza is a web application built using React.js, React-router-dom for
 - React.js
 - React-Router-dom
 - Redux Toolkit
+- Tailwind css
 
 ## Setup
 
